@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="solarpower" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<file>D:/Logs/Solarpower/solarPower.log</file>
+			<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+	      		<fileNamePattern>D:/Logs/Solarpower/solarPowerLog.log.%i</fileNamePattern>
+	      		<minIndex>1</minIndex>
+	      		<maxIndex>20</maxIndex>
+	    	</rollingPolicy>
+	        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+	      		<maxFileSize>1000000</maxFileSize>
+	    	</triggeringPolicy>
+	        <encoder>
+				<Pattern>%level %d - %m%n</Pattern>
+			</encoder>
+	</appender>
+	
+	<logger name="org.hibernate" level="DEBUG">
+		<appender-ref ref="solarpower" />
+	</logger>
+	
+	<logger name="com.solarpower" level="ERROR">>
+		<appender-ref ref="solarpower" />
+	</logger>
+
+	<logger name="org.springframework" level="ERROR">
+		<appender-ref ref="solarpower" />
+	</logger>
+ 
+	<root level="ERROR">
+		<appender-ref ref="solarpower" />
+	</root>
+
+</configuration>
